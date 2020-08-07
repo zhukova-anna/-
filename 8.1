@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+float sumr(float x)
+{
+float answer;
+if(x==1) return(1/(1+1));
+answer = (1/(1+x))+sumr(x-1);
+return(answer);
+}
+
+int main()
+{
+    float n;
+    float s;
+    printf("n= ");
+    scanf("%d",&n);
+    while(n<0){
+        printf("Try again");
+        scanf("%d",&n);
+    }
+    s=1+sumr(n);
+    printf("sumr= %f",s);
+    return 0;
+}
