@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main()
+{
+    srand(time(NULL));
+    int i,j,n,m,min,max;
+    printf("n= ");
+    scanf("%d",&n);
+    while(n<0){
+        printf("Try again");
+        scanf("%d",&n);
+    }
+    printf("m= ");
+    scanf("%d",&m);
+    while(m<0){
+        printf("Try again");
+        scanf("%d",&m);
+    }
+    int T[n][m];
+    for(i=0;i<n;i++)
+        for(j=0;j<m;j++){
+            T[i][j]=rand()%20;
+    }
+    for(i=0;i<n;i++){
+        printf("\n");
+        for(j=0;j<m;j++)
+            printf("%2d ",T[i][j]);
+    }
+    min=T[0][0];
+    for(i=0;i<n;i++)
+        for(j=0;j<m;j++){
+            if(min>T[i][j])
+                min=T[i][j];
+    }
+    max=T[0][0];
+    for(i=0;i<n;i++)
+        for(j=0;j<m;j++){
+            if(max<T[i][j]){
+                max=T[i][j];
+        }
+    }
+    float ser;
+    ser=((float)min+(float)max)/2;
+    printf("\nmin=%d", min);
+    printf("\nmax=%d", max);
+    printf("\nser=%.1f", ser);
+    return 0;
+}
