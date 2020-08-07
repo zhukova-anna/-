@@ -1,0 +1,104 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct{ //створення структури
+	char name[64];
+	char wm[64];
+	char post[64];
+	int pay;
+} firm;
+
+int printFirm(firm staff){
+	printf("name: %s\t\n", staff.name);
+}
+
+int main()
+{
+    int i,n;
+    printf("n= ");
+    scanf("%d",&n);
+    while(n<0){
+        printf("Try again");
+        scanf("%d",&n);
+    }
+	firm *staff;
+
+	staff = (firm*) calloc(n,sizeof(firm));
+
+	for(i=0;i<n;i++){
+		printf("Name: ");
+		fflush(stdin);
+		gets(staff[i].name);
+		printf("Gender: ");
+		gets(staff[i].wm);
+		printf("Post:");
+		gets(staff[i].post);
+		printf("Pay: ");
+		scanf("%d",&staff[i].pay);
+	}
+
+	printf("\n");
+	int max=0,k=0;
+	for (i=0;i<n;i++)
+        if(staff[i].pay>max){
+        max=staff[i].pay;
+        k=i;
+    }
+	printFirm(staff[k]);
+
+	int sum=0,ser=0;
+	for (i=0;i<n;i++){
+        sum+=staff[i].pay;
+	}
+	ser=sum/n;
+	printf("ser= %d\n",ser);
+
+	printf("Min_man: ");
+	char man[]="man";
+	int min=0;
+	k=0;
+	for (i=0;i<n;i++){
+        if(strcmp(man,staff[i].wm)==0){
+            k=i;
+        }
+	}
+    min=staff[k].pay;
+	k=0;
+	int h=0,min_g;
+	for (i=0;i<n;i++){
+        if(strcmp(man,staff[i].wm)==0){
+            h=i;
+            if(staff[h].pay<min){
+                min_g=staff[h].pay;
+            min=min_g;
+            }
+        }
+	}
+	printf("%d",min);
+
+	printf("\nMin_woman: ");
+	char woman[]="woman";
+	min=0;
+	k=0;
+	for (i=0;i<n;i++){
+        if(strcmp(woman,staff[i].wm)==0){
+            k=i;
+        }
+	}
+    min=staff[k].pay;
+	k=0;
+	h=0;
+	min_g=0;
+	for (i=0;i<n;i++){
+        if(strcmp(woman,staff[i].wm)==0){
+            h=i;
+            if(staff[h].pay<min){
+                min_g=staff[h].pay;
+            min=min_g;
+            }
+        }
+	}
+	printf("%d",min);
+    return 0;
+}
