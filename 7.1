@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+void Roz(int *a, int n)
+{
+int i;
+for (i = 0; i < n; i++)
+    a[i]=-10+rand()%(10+10+1);
+}
+
+void Print(const int *a, const int n)
+{
+int i;
+for (i = 0; i < n; i++)
+printf("%d ", a[i]);
+printf("\n");
+}
+
+void Po(const int *a, const int n)
+{
+int i,sum=0,k=0,kub;
+for (i = 0; i < n; i++)
+if(a[i]<0){
+    kub=pow(a[i],3);
+    sum+=kub;
+    k++;
+}
+printf("\nsum_v= %d",sum);
+printf("\nkilkist= %d",k);
+sum=0;
+for (i = 0; i < n; i++)
+if(a[i]>0){
+    sum+=a[i];
+}
+printf("\nsum_d= %d",sum);
+}
+
+int main()
+{
+    int *a,*b;
+int size,i;
+srand(time(NULL));
+printf("size= ");
+    scanf("%d",&size);
+    while(size<0){
+        printf("Try again");
+        scanf("%d",&size);
+    }
+a = (int *)calloc(size, sizeof(int));
+b = (int *)calloc(size, sizeof(int));
+
+Roz(a,size);
+Print(a, size);
+Po(a, size);
+free(a);
+    return 0;
+}
