@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct{ //створення структури
+	char name[64];
+	char married[64];
+	char kids[64];
+} family;
+
+int printFamily(family person){
+	printf("Name: %s\t\n", person.name);
+}
+
+int main()
+{
+    int i,n;
+	family *person;
+	printf("n= ");
+    scanf("%d",&n);
+    while(n<0){
+        printf("Try again");
+        scanf("%d",&n);
+    }
+	person = (family*) calloc(n,sizeof(family));
+
+	for(i=0;i<n;i++){
+		printf("Name: ");
+		fflush(stdin);//очищає буфер обміну
+		gets(person[i].name);
+		printf("Married: ");
+		gets(person[i].married);
+		printf("Kids:");
+		gets(person[i].kids);
+	}
+
+	char yes[]="yes";
+	char no[]="no";
+	int k;
+	for(i=0;i<n;i++){
+        if(strcmp(yes,person[i].married)==0&&strcmp(yes,person[i].kids)==0){
+            k=i;
+        }
+	}
+	printFamily(person[k]);
+    return 0;
+}
