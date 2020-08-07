@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct{ //створення структури
+	char name[64];
+	int day, month, year;
+} goods;
+
+int printGoods(goods list){
+	printf("Name: %s\tDate:%d.%d.%d\n", list.name,list.day,list.month,list.year);
+}
+
+int main(int argc, char *argv[]) {
+	int i,n;
+	printf("n= ");
+    scanf("%d",&n);
+    while(n<0){
+        printf("Try again");
+        scanf("%d",&n);
+    }
+	goods *list;
+
+	list = (goods*) calloc(n,sizeof(goods));
+
+	for(i=0;i<n;i++){
+		printf("Name: ");
+		fflush(stdin);
+		gets(list[i].name);
+		printf("Date: ");
+		printf("Day: ");
+		scanf("%d",&list[i].day);
+		printf("Month: ");
+		scanf("%d",&list[i].month);
+		printf("Year:");
+		scanf("%d",&list[i].year);
+	}
+
+	printf("\n");
+	for (i=0;i<n;i++){
+        if(list[i].month>5&&list[i].month<9)
+		 printGoods(list[i]);
+	}
+    return 0;
+}
